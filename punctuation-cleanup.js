@@ -13,13 +13,15 @@ var fs = require("fs");
 //  not yet defined:  single quotes within double quotes
 
 var replacements = [
+    { searchFor: /Character set encoding: ASCII/, replaceWith: "Character set encoding: UTF-8"},  //  dashes and curly quotes aren't in ASCII
+    { searchFor: /(That|this) 'ere/g, replaceWith: "$1 ’ere"},   //  elided consonant (Youth)
     { searchFor: /([C|c]atch|Give|Eat) 'im/g, replaceWith: "$1 ’im"},   //  Catch 'im, Give 'im (Heart of Darkness)
     { searchFor: /^'im\./gm, replaceWith: "’im."},   //  catch 'im (Heart of Darkness) [Be specific so as not to change something unwittingly]
     { searchFor: /'d\b/g, replaceWith: "’d"},    // I'd
     { searchFor: /'ll\b/g, replaceWith: "’ll"},    //  you'll
     { searchFor: /'m\b/g, replaceWith: "’m"},    //  I'm
     { searchFor: /'re\b/g, replaceWith: "’re"},    //  you're
-    { searchFor: /'s\b/g, replaceWith: "’s"},    //  it's
+    { searchFor: /'(s|S)\b/g, replaceWith: "’$1"},    //  it's, GRIMM'S (Youth)
     { searchFor: /s'(\s)/g, replaceWith: "s’$1"},    //  plural possessive
     { searchFor: /'st\b/g, replaceWith: "’st"},    //  look'st (Rime of the Ancient Mariner)
     { searchFor: /'t\b/g, replaceWith: "’t"},   //  don't
@@ -27,6 +29,7 @@ var replacements = [
     { searchFor: /(\s)'(\d\ds)/g, replaceWith: "$1’$2"},   //  ’90s
     { searchFor: /O'([A-Z])/g, replaceWith: "O’$1"},    //  O'Reilly
     { searchFor: /(o|e)'e/g, replaceWith: "$1’e"},    //  o'er, ne'er (Rime)
+    { searchFor: /(sou)'west/g, replaceWith: "$1’west"},    //  sou'west (Youth)
     { searchFor: /'(em|gan)\b/g, replaceWith: "’em"},    //  'em, 'gan  (Rime)
 //    { searchFor: /",/g, replaceWith: ',”'},    // comma outside quote mark
 //    { searchFor: /"\./g, replaceWith: '.”'},    // period outside quote mark (transpose only)
@@ -38,7 +41,8 @@ var replacements = [
     { searchFor: / - /g, replaceWith: " — "},    //  em dash between spaces
     { searchFor: /(\w)-- /g, replaceWith: "$1— "},    //  em dash after character followed by space
     { searchFor: /(\w)--'(\w)/g, replaceWith: "$1—‘$2"},    //  em dash after character followed by right single quote and space
-    { searchFor: /(\w)'--(\w)/g, replaceWith: "$1’—$2"},    //  right single quote after character followed by em dash and space
+    { searchFor: /(\w)'--(\w)/g, replaceWith: "$1’—$2"},    //  right single quote after character followed by em dash
+    { searchFor: /(\w)'-(\w)/g, replaceWith: "$1’-$2"},    //  right single quote after character followed by hyphen and character (stun'-sails, Youth)
     { searchFor: /(\w)--' /g, replaceWith: "$1—’ "},    //  em dash after character followed by right single quote and space
     { searchFor: /(\w)'; /g, replaceWith: "$1’; "},    //  apostrophe after character followed by semi-colon and space
     { searchFor: /(\?)--\b/g, replaceWith: "$1—"},    //  em dash after question mark followed by word boundary
@@ -48,7 +52,7 @@ var replacements = [
     { searchFor: /(\w|!|,|\?|”)'--'/g, replaceWith: "$1’—‘"},    //  em dash after left single quote followed by right single quote
     { searchFor: /(\w|!|,|\?|”)'--(\w)/g, replaceWith: "$1’—$2"},    //  em dash after left single quote followed by right single quote
     { searchFor: /(\w|”)--(\w|“|\s)/gm, replaceWith: "$1—$2"},    //  em dash after characters (or quote) followed by letter
-    { searchFor: /(!)--(\w|“|\s)/gm, replaceWith: "$1—$2"},    //  em dash after punctuation and before characters (and between quotes)
+    { searchFor: /(!|,)--(\w|“|\s)/gm, replaceWith: "$1—$2"},    //  em dash after punctuation and before characters (and between quotes)
     { searchFor: / '(Change)/g, replaceWith: " ’$1"},    //  'Change (Heart of Darkness)
     { searchFor: / '([A-Z])/g, replaceWith: " ‘$1"},    //  'Word (inner quote)
     { searchFor: / '([a-z])/g, replaceWith: " ‘$1"},    //  'word (inner quote, as in Heart of Darkness)
@@ -58,12 +62,14 @@ var replacements = [
     { searchFor: /^'\b/gm, replaceWith: '‘'},    //  open single quote line beginning (eg, precedes a 'word boundary')
     { searchFor: /^"'\b/gm, replaceWith: '“‘'},    //  open double quote preceding open single quote at line beginning (eg, precedes a 'word boundary')
     { searchFor: /(\w)'\.\.\.$/gm, replaceWith: "$1’..."},    //  em dash after character followed by space
-    { searchFor: /(\w)\.\.\.(\.)?"$/gm, replaceWith: '$1...$2”'},    //  em dash after character followed by space
+    { searchFor: /(\w)\.\.\.(\.|!)?"$/gm, replaceWith: '$1...$2”'},    //  em dash after character followed by space (Youth)
     { searchFor: /^"\.\.\./gm, replaceWith: '“...'},    //  open quote at line beginning, followed by ellipsis
+    { searchFor: /^(\s*)"\.\.\./gm, replaceWith: '$1“...'},    //  spaces then open quote at line beginning, followed by ellipsis (Youth)
     { searchFor: /^"'\.\.\./gm, replaceWith: '“‘...'},    //  open quote then open single quote at line beginning, followed by ellipsis
-    { searchFor: /(d)'ye/g, replaceWith: "$1’ye"}   //  d'ye (Heart of Darkness)
+    { searchFor: /(d)'ye/g, replaceWith: "$1’ye"},   //  d'ye (Heart of Darkness)
+    { searchFor: /(:|,) '_(\w)/g, replaceWith: "$1 ‘_$2"}   //  italic inside single quote, markdown (Youth)
 ];
-//
+//  sou'west
 var inFile = process.argv[2];
 var outFile = process.argv[3]
 
