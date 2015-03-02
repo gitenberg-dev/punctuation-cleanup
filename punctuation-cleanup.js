@@ -77,8 +77,8 @@ var replacements = [
     { searchFor: /^(\s*)?'\b/gm, replaceWith: '$1‘'},    //  open single quote line beginning (eg, precedes a 'word boundary')
     { searchFor: /(\w)'" /g, replaceWith: '$1’” '},    //  close single quote followed by close double quote and space
     { searchFor: /^(\s*)?"'\b/gm, replaceWith: '$1“‘'},    //  open double quote preceding open single quote at line beginning (eg, precedes a 'word boundary')
-    { searchFor: /(\w)'\.\.\.$/gm, replaceWith: "$1’..."},    //  em dash after character followed by space
-    { searchFor: /(\w)(!)\.\.\.(\.|!)?"$/gm, replaceWith: '$1$2...$destroy”'},    //  em dash after character followed by space (Youth)
+    { searchFor: /(\w)'\.\.\.$/gm, replaceWith: "$1’..."},    //  close single quote after character followed by ellipsis
+    { searchFor: /(\w)(!)\.\.\.(\.|!)?"$/gm, replaceWith: '$1$2...$3”'},    //  close double quote after ellipsis preceded by char or ! (Youth)
     { searchFor: /^(\s*)?"\.\.\./gm, replaceWith: '$1“...'},    //  open quote at line beginning, followed by ellipsis
     { searchFor: /^(\s*)"\.\.\./gm, replaceWith: '$1“...'},    //  spaces then open quote at line beginning, followed by ellipsis (Youth)
     { searchFor: /^(\s*)?"'\.\.\./gm, replaceWith: '$1“‘...'},    //  open quote then open single quote at line beginning, followed by ellipsis
