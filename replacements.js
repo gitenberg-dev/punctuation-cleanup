@@ -1,3 +1,6 @@
+//  identify each type of change, particularly for the apostrophe, since global change (e.g., /.'./g or /(\w|\d)'(\w|\d)/g) is just too risky
+//  By making only known changes, stray apostrophes and quotes can be located easily
+//
 var replacements = [
     { searchFor: /Character set encoding: ASCII/, replaceWith: "Character set encoding: UTF-8"},  //  dashes and curly quotes aren't in ASCII
     { searchFor: /(That|that|this) 'ere/g, replaceWith: "$1 ’ere"},   //  elided consonant: (h)ere (Youth)
@@ -113,5 +116,5 @@ var replacements = [
     { searchFor: /(:|,) '_(\w)/g, replaceWith: "$1 ‘_$2"},   //  italic inside single quote, markdown (Youth)
     { searchFor: / '<i>/g, replaceWith: " ‘<i>"}   //  italic inside single quote, html (Heart of Darkness)
 ];
-
+//
 module.exports = replacements;
