@@ -45,6 +45,7 @@ var replacements = [
     { searchFor: /'t\b/g, replaceWith: "’t"},   //  don't
     { searchFor: /'ve\b/g, replaceWith: "’ve"},   //  I've
     { searchFor: /(\s)'(\d\ds)/g, replaceWith: "$1’$2"},   //  ’90s
+    { searchFor: /(\s)'(\d\d)/g, replaceWith: "$1’$2"},   //  in 1965 and ’66 (Hacker Crackdown)
     { searchFor: /O'([A-Z])/g, replaceWith: "O’$1"},    //  O'Reilly
     { searchFor: /o'clock/g, replaceWith: "o’clock"},    //  o'clock
     { searchFor: /(o|e)'e/g, replaceWith: "$1’e"},    //  o'er, ne'er (Rime)
