@@ -51,9 +51,9 @@ describe("possessives", function() {
         expect(tryThis).to.equal("So:  from the law’s point of view, why risk missing anything?  Take the works.")
     });
     it("should fix upper-case singular possessive: GRIMM'S", function() {
-        var testString = "  than the wealth of all the world.” GRIMM’S TALES.";  // Youth
+        var testString = "PAYING THIS GUY'S RENT while grinding their teeth in anguish,";  // Hacker Crackdown
         var tryThis = cleanup(testString);
-        expect(tryThis).to.equal("  than the wealth of all the world.” GRIMM’S TALES.")
+        expect(tryThis).to.equal("PAYING THIS GUY’S RENT while grinding their teeth in anguish,")
     });
     it("should fix plural possessive: boys' ", function() {
         var testString = "and some WWII vintage blockhouses and officers' quarters.";  // Hacker Crackdown
@@ -83,4 +83,43 @@ describe("common uses", function() {
         expect(tryThis).to.equal("It was nine o’clock. Mr. Baker, speaking up to the man above him,")
     });
 });
-//  It was nine o'clock. Mr. Baker, speaking up to the man above him,
+describe("less-common contractions", function() {
+    it("should fix ha'penny", function() {
+        var testString = "For a ha'penny I would knock";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("For a ha’penny I would knock")
+    });
+    it("should fix sou'west", function() {
+        var testString = "the wind went round to the sou'west and began to pipe up. In two days it";  // Conrad Youth
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("the wind went round to the sou’west and began to pipe up. In two days it")
+    });
+    it("should fix o'er & ne'er", function() {
+        var testString = "     With far-heard whisper, o'er the sea.\n     It ate the food it ne'er had eat,";  // Rime of the Ancient Mariner
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("     With far-heard whisper, o’er the sea.\n     It ate the food it ne’er had eat,")
+    });
+    it("should fix t'other", function() {
+        var testString = "t'other in his pocket";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("t’other in his pocket")
+    });
+    it("should fix 'twas and 'Twas", function() {
+        var testString = "     And now 'twas like all instruments,\n     'Twas sad as sad could be;";  // Rime of the Ancient Mariner
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("     And now ’twas like all instruments,\n     ’Twas sad as sad could be;")
+    });
+    it("should fix 'tis and 'Tis", function() {
+        var testString = "     'Tis sweeter far to me,\n 'tis";  // Rime of the Ancient Mariner
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("     ’Tis sweeter far to me,\n ’tis")
+    });
+    it("should fix 'tain't and 'Tain't", function() {
+        var testString = "'Tain't far\n 'tain't\nship!\"--\"'Tain't his fault, is it?\" argued Belfast,";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("’Tain’t far\n ’tain’t\nship!”—“’Tain’t his fault, is it?” argued Belfast,")
+    });
+});
+
+//ship!\"--\"'Tain't his fault, is it?\" argued Belfast,
+
