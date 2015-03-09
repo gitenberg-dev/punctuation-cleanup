@@ -59,7 +59,7 @@ var replacements = [
     { searchFor: /(\?)"' /g, replaceWith: '$1”’ '},    //  close double quote preceding close single quote at sentence end
     { searchFor: /\b"/g, replaceWith: '”'},    //  close quote (eg, is preceded by a 'word boundary') needs to be set to follow punctuation as well
     { searchFor: /\b([\.|,|\?|!|;|:|-])"/g, replaceWith: '$1”'},    //  close quote after period (eg, is preceded by a 'word boundary')
-    { searchFor: /'(Twas|Tis|twas|tis|Tain)/g, replaceWith: '’$1'},    //  'Twas, 'tis, 'Tain't
+    { searchFor: /'(Twas|Tis|twas|tis|Tain|tain)/g, replaceWith: '’$1'},    //  'Twas, 'tis, 'Tain't
     { searchFor: /t'other/g, replaceWith: "t’other"},    //  t(he) other  (Conrad 'Narcissus')
     { searchFor: / - /g, replaceWith: " — "},    //  em dash between spaces
     { searchFor: /(\w)-- /g, replaceWith: "$1— "},    //  em dash after character followed by space
