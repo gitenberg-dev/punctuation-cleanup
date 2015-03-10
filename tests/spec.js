@@ -129,7 +129,12 @@ describe("less-common contractions", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("     Why look’st thou so?")
     });
+    it("should fix gran'mother", function() {
+        var testString = "gran'mother! Yer afeard! Who's yer ter be afeard";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("gran’mother! Yer afeard! Who’s yer ter be afeard")
+    });
 });
 
-//     Why look'st thou so?
+//gran'mother! Yer afeard! Who's yer ter be afeard
 
