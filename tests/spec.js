@@ -124,7 +124,12 @@ describe("less-common contractions", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("yerself, s’long as ye’re right")
     });
+    it("should fix look'st", function() {
+        var testString = "     Why look'st thou so?";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("     Why look’st thou so?")
+    });
 });
 
-//ship!\"--\"'Tain't his fault, is it?\" argued Belfast,
+//     Why look'st thou so?
 
