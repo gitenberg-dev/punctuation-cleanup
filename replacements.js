@@ -24,7 +24,7 @@ var replacements = [
     { searchFor: /(\s)S'elp/g, replaceWith: "$1S’elp"},   //  so help me (Conrad 'Narcissus')
     { searchFor: /ainch'ee/g, replaceWith: "ainch’ee"},   //  ain't ye (Conrad 'Narcissus')
     { searchFor: / som'thin(g|k)/g, replaceWith: " som’thin$1"},   //  something (Conrad 'Narcissus')
-    { searchFor: /gran'mother/g, replaceWith: "gran’mother"},   //  something (Conrad 'Narcissus')
+    { searchFor: /gran'mother/g, replaceWith: "gran’mother"},   //  gran'mother (Conrad 'Narcissus')
     { searchFor: /(G|g)i'e/g, replaceWith: "$1i’e"},   //  gi(v)e me (Conrad 'Narcissus')
     { searchFor: / '(ed|ead|ear|ad|un)\b/g, replaceWith: " ’$1"},   //  (h)e(a)d, (h)ad, good 'un (Conrad 'Narcissus')
     { searchFor: /^'(ead|ee)\b/gm, replaceWith: "’$1"},   //  (h)ead at line beginning (Conrad 'Narcissus')
