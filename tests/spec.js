@@ -139,7 +139,12 @@ describe("less-common contractions", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal('Gi’e me\nand breathe. Archie shouted:—“Gi’e me room!” We crouched behind him,')
     });
+    it("should fix more'n", function() {
+        var testString = "been there more'n thirty hours.\nyer wusse'n ever?\nevery chokey in the Colonies rather'n give up my rights\ntreated worser'n a dorg\nbetter'n a tot o' rum";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("been there more’n thirty hours.\nyer wusse’n ever?\nevery chokey in the Colonies rather’n give up my rights\ntreated worser’n a dorg\nbetter’n a tot o’ rum")
+    });
 });
 
-//Gi'e me room!
+//been there more'n thirty hours.
 
