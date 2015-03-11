@@ -89,7 +89,7 @@ var replacements = [
     { searchFor: / '([A-Z])/g, replaceWith: " ‘$1"},    //  'Word (inner quote)
     { searchFor: / '([a-z])/g, replaceWith: " ‘$1"},    //  'word (inner quote, as in Heart of Darkness)
     { searchFor: /(\.|\?|!)'\.\.\./g, replaceWith: "$1’..."},    //  close single quote after end punctuation followed by ellipsis
-    { searchFor: /(\w|,|\.|\?|!|;|:|-)' /g, replaceWith: "$1’ "},    //  close single quote after period etc
+    { searchFor: /(\w|,|\.|\?|!|;|:|-)' /g, replaceWith: "$1’ "},    //  close single quote after period etc; also "tot o' rum" (Conrad 'Narcissus')
     { searchFor: /(\w|,|\.|\?|!|;|:|-)" /g, replaceWith: '$1” '},    //  close single quote after period etc
     { searchFor: /(\w)'\? /g, replaceWith: "$1’? "},    //  close single quote before question mark  (Conrad 'Narcissus')
     { searchFor: /(\w|,|\.|\?|!|;|:|-)'$/gm, replaceWith: "$1’"},    //  close single quote after period etc at end of line
