@@ -151,6 +151,11 @@ describe("elided letters", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("better’n a tot o’ rum\nYou know I can’t sleep o’ nights.")
     });
+    it("should fix dropped final ugh — i.e., tho' [tho(ugh) ]", function() {
+        var testString = "Good cook tho'.\nCan never tell tho'\n";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("Good cook tho’.\nCan never tell tho’\n")
+    });
 });
-//been there more'n thirty hours.
+//Good cook tho'.
 
