@@ -145,6 +145,12 @@ describe("less-common contractions", function() {
         expect(tryThis).to.equal("been there more’n thirty hours.\nyer wusse’n ever?\nevery chokey in the Colonies rather’n give up my rights\ntreated worser’n a dorg\nbetter’n a tot o’ rum")
     });
 });
-
+describe("elided letters", function() {
+    it("should fix dropped final f — i.e., o' [o(f) ]", function() {
+        var testString = "better'n a tot o' rum\nYou know I can't sleep o' nights.";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("better’n a tot o’ rum\nYou know I can’t sleep o’ nights.")
+    });
+});
 //been there more'n thirty hours.
 
