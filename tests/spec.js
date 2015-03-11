@@ -134,7 +134,12 @@ describe("less-common contractions", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("gran’mother! Yer afeard! Who’s yer ter be afeard")
     });
+    it("should fix gi'e me", function() {
+        var testString = "Gi'e me\nand breathe. Archie shouted:--\"Gi'e me room!\" We crouched behind him,";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal('Gi’e me\nand breathe. Archie shouted:—“Gi’e me room!” We crouched behind him,')
+    });
 });
 
-//gran'mother! Yer afeard! Who's yer ter be afeard
+//Gi'e me room!
 
