@@ -86,6 +86,7 @@ var replacements = [
     { searchFor: /(!|,|:|\.)--(\w|“|\s)/g, replaceWith: "$1—$2"},    //  em dash after punctuation and before characters (and between quotes)
     { searchFor: /(:)--("')(\w)/gm, replaceWith: "$1—“‘$3"},    //  colon then dash then open double quote then open single quote then text   (Conrad 'Narcissus')
     { searchFor: / '(Change)/g, replaceWith: " ’$1"},    //  'Change (Heart of Darkness)
+    { searchFor: /(\s)'e(e)?\b/g, replaceWith: "$1’e$2"},   //  space (h)e (Conrad 'Narcissus')
     { searchFor: / '([A-Z])/g, replaceWith: " ‘$1"},    //  'Word (inner quote)
     { searchFor: / '([a-z])/g, replaceWith: " ‘$1"},    //  'word (inner quote, as in Heart of Darkness)
     { searchFor: /(\.|\?|!)'\.\.\./g, replaceWith: "$1’..."},    //  close single quote after end punctuation followed by ellipsis
