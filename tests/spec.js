@@ -171,6 +171,10 @@ describe("elided letters", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("The night’s dry, let ’em ’ang out till\nyer never seed a man ’ard up?")
     });
+    it("should fix dropped initial h in (h)old, (h)ome and (h)ell: 'old, 'ome, 'ell", function() {
+        var testString = "We're all goin' to 'ell now.\nWell, it's a 'omeward trip, anyhow.\nI 'old you up";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("We’re all goin’ to ’ell now.\nWell, it’s a ’omeward trip, anyhow.\nI ’old you up")
+    });
 });
-//yer never seed a man 'ard up?
-
+//
