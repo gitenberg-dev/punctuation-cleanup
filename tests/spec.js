@@ -156,6 +156,11 @@ describe("elided letters", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("Good cook tho’.\nCan never tell tho’\n")
     });
+    it("should fix dropped initial h in (h)e: 'e", function() {
+        var testString = "said 'e would brain me\nWhat 'ee could do without hus?\nDon't 'ee believe him!";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("said ’e would brain me\nWhat ’ee could do without hus?\nDon’t ’ee believe him!")
+    });
 });
-//Good cook tho'.
+//said ’e would brain me
 
