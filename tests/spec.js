@@ -46,7 +46,7 @@ describe("common contractions", function() {
 });
 describe("possessives", function() {
     it("should fix singular possessive: boy's", function() {
-        var testString = "So:  from the law's point of view, why risk missing anything?  Take the works.";  // Hacker Crackdown
+        var testString = "So:  from the law's point of view, why risk missing anything\?  Take the works.";  // Hacker Crackdown
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("So:  from the law’s point of view, why risk missing anything?  Take the works.")
     });
@@ -161,6 +161,16 @@ describe("elided letters", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("said ’e would brain me\nWhat ’ee could do without hus?\nDon’t ’ee believe him!")
     });
+    it("should fix dropped initial he in (he)art: 'art", function() {
+        var testString = "blast their black 'arts\n'artless canny-bals?\nyer never seed a man 'art up\?";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("blast their black ’arts\n’artless canny-bals?\nyer never seed a man ’art up?")
+    });
+    it("should fix dropped initial h in (h)ang and (h)ard: 'ang, 'ard", function() {
+        var testString = "The night's dry, let 'em 'ang out till\nyer never seed a man 'ard up\?";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("The night’s dry, let ’em ’ang out till\nyer never seed a man ’ard up?")
+    });
 });
-//said ’e would brain me
+//yer never seed a man 'ard up?
 
