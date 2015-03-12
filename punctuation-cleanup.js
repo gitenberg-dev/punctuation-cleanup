@@ -1,5 +1,6 @@
 //  punctuation-cleanup.js
 //  use:   $ node punctuation-cleanup.js  file-to-clean.txt  cleaned-file.txt
+//  e.g.,   $ node ../scripts/punctuation-cleanup.js  17731.txt  ../cleaned/17731.txt
 /*
  * MIT license http://opensource.org/licenses/MIT
  *
