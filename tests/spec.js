@@ -115,10 +115,10 @@ describe("less-common contractions", function() {
         expect(tryThis).to.equal("     ’Tis sweeter far to me,\n ’tis")
     });
     it("should fix 'tain't and 'Tain't", function() {
-        var testString = "'Tain't far\n 'tain't\nship!\"--\"'Tain't his fault, is it?\" argued Belfast,";  // Conrad 'Narcissus'
+        var testString = "suddenly--\"\'Tain\'t far\nship!\"--\"\'Tain\'t his fault, is it?\" argued Belfast,";  // Conrad 'Narcissus'
         var tryThis = cleanup(testString);
-        expect(tryThis).to.equal("’Tain’t far\n ’tain’t\nship!”—“’Tain’t his fault, is it?” argued Belfast,")
-    });
+        expect(tryThis).to.equal("suddenly—“’Tain’t far\nship!”—“’Tain’t his fault, is it?” argued Belfast,")
+    }); //ship!”—“’Tain’t his fault
     it("should fix s'long", function() {
         var testString = "yerself, s'long as ye're right";  // Conrad 'Narcissus'
         var tryThis = cleanup(testString);
@@ -156,25 +156,35 @@ describe("elided letters", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("Good cook tho’.\nCan never tell tho’\n")
     });
-    it("should fix dropped initial h in (h)e: 'e", function() {
+    it("should fix elided initial h in (h)e: 'e", function() {
         var testString = "said 'e would brain me\nWhat 'ee could do without hus?\nDon't 'ee believe him!";  // Conrad 'Narcissus'
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("said ’e would brain me\nWhat ’ee could do without hus?\nDon’t ’ee believe him!")
     });
-    it("should fix dropped initial he in (he)art: 'art", function() {
+    it("should fix elided initial he in (he)art: 'art", function() {
         var testString = "blast their black 'arts\n'artless canny-bals?\nyer never seed a man 'art up\?";  // Conrad 'Narcissus'
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("blast their black ’arts\n’artless canny-bals?\nyer never seed a man ’art up?")
     });
-    it("should fix dropped initial h in (h)ang and (h)ard: 'ang, 'ard", function() {
+    it("should fix elided initial h in (h)ang and (h)ard: 'ang, 'ard", function() {
         var testString = "The night's dry, let 'em 'ang out till\nyer never seed a man 'ard up\?";  // Conrad 'Narcissus'
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("The night’s dry, let ’em ’ang out till\nyer never seed a man ’ard up?")
     });
-    it("should fix dropped initial h in (h)old, (h)ome and (h)ell: 'old, 'ome, 'ell", function() {
+    it("should fix elided initial h in (h)old, (h)ome and (h)ell: 'old, 'ome, 'ell", function() {
         var testString = "We're all goin' to 'ell now.\nWell, it's a 'omeward trip, anyhow.\nI 'old you up";  // Conrad 'Narcissus'
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("We’re all goin’ to ’ell now.\nWell, it’s a ’omeward trip, anyhow.\nI ’old you up")
     });
+    it("should fix elided initial h in (h)im: catch 'im", function() {
+        var testString = "'Catch 'im,' he snapped\nGive 'im to us.\n'Eat 'im!' he said curtly\nbreak 'im up\"\ncatch\n'im.";  // Conrad Heart of Darkness
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("‘Catch ’im,’ he snapped\nGive ’im to us.\n‘Eat ’im!’ he said curtly\nbreak ’im up”\ncatch\n’im.")
+    });
+    it("should fix elided initial h  or i after dash and open quote: 'Ave, 'Tain't", function() {
+        var testString = "yelled out:--\"'Ave you been to your dentyst\nsuddenly--\"'Tain't far\nbeam.--\"'Ow\nmuttering:--\"'Twill make\nbegan to shout:--\"'Ear 'im;";  // Conrad Heart of Darkness
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("yelled out:—“’Ave you been to your dentyst\nsuddenly—“’Tain’t far\nbeam.—“’Ow\nmuttering:—“’Twill make\nbegan to shout:—“’Ear ’im;")
+    });
 });
-//
+//yelled out:--"'Ave you been to your dentyst
