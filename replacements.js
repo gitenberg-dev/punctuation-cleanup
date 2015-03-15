@@ -4,7 +4,6 @@
 var replacements = [
     { searchFor: /Character set encoding: ASCII/, replaceWith: "Character set encoding: UTF-8"},  //  dashes and curly quotes aren't in ASCII
     { searchFor: /(That|that|this) 'ere/g, replaceWith: "$1 ’ere"},   //  elided consonant: (h)ere (Youth)
-//    { searchFor: /black 'arts/g, replaceWith: "black ’arts"},   //  black (he)arts (Conrad 'Narcissus')
     { searchFor: /black'earted/g, replaceWith: "black’earted"},   //  black (he)arted (Conrad 'Narcissus')
     { searchFor: /fo'c'sle/g, replaceWith: "fo’c’sle"},   //  fo'c'sle (forecastle) (Conrad 'Narcissus')
     { searchFor: /p'r'aps/g, replaceWith: "p’r’aps"},   //  p(e)r(h)aps (Conrad 'Narcissus')
@@ -13,9 +12,9 @@ var replacements = [
     { searchFor: /'(As|as)\b/g, replaceWith: "’$1"},   //  (h)as (Conrad 'Narcissus')
     { searchFor: /"'(Cos)/g, replaceWith: "“’$1"},   //  (be)cause (Conrad 'Narcissus')
     { searchFor: /'(Cos|cos)/g, replaceWith: "’$1"},   //  (be)cause (Conrad 'Narcissus')
-    { searchFor: /(\s)'(ome|old|ell)/g, replaceWith: "$1’$2"},   //  (h)omeward, (h)old, (h)ell (Conrad 'Narcissus')
-    { searchFor: / 'owling/g, replaceWith: " ’owling"},   //  (h)owling (Conrad 'Narcissus')
-    { searchFor: /'Ow/g, replaceWith: "’Ow"},   //  (h)owling (Conrad 'Narcissus')
+    { searchFor: /(\s)'(ome|old|ell|owling)/g, replaceWith: "$1’$2"},   //  (h)omeward, (h)old, (h)ell, (h)owling (Conrad 'Narcissus')
+//    { searchFor: / 'owling/g, replaceWith: " ’owling"},   //  (h)owling (Conrad 'Narcissus')
+//    { searchFor: /(^|\s)'Ow/g, replaceWith: "$1’Ow"},   //  (H)ow (Conrad 'Narcissus')
     { searchFor: /(--|—)s'elp/g, replaceWith: "$1s’elp"},   //  so help me (Conrad 'Narcissus')
     { searchFor: /(\s)S'elp/g, replaceWith: "$1S’elp"},   //  so help me (Conrad 'Narcissus')
     { searchFor: /ainch'ee/g, replaceWith: "ainch’ee"},   //  ain't ye (Conrad 'Narcissus')
@@ -24,7 +23,8 @@ var replacements = [
     { searchFor: /(G|g)i'e/g, replaceWith: "$1i’e"},   //  gi(v)e me (Conrad 'Narcissus')
     { searchFor: / '(ed|ead|ear|ad|un)\b/g, replaceWith: " ’$1"},   //  (h)e(a)d, (h)ad, good 'un (Conrad 'Narcissus')
     { searchFor: /^'(ead|ee)\b/gm, replaceWith: "’$1"},   //  (h)ead at line beginning (Conrad 'Narcissus')
-    { searchFor: /([C|c]atch|Give|Eat|break|Let|made|do for) 'im/g, replaceWith: "$1 ’im"},   //  Catch 'im, Give 'im (Heart of Darkness)
+    { searchFor: /(^|\s)'im\b/g, replaceWith: "$1’im"},   //  Catch 'im, Give 'im, preceded by space or (Heart of Darkness)
+//    { searchFor: /([C|c]atch|Give|Eat|break|Let|made|do for) 'im/g, replaceWith: "$1 ’im"},   //  Catch 'im, Give 'im (Heart of Darkness)
     { searchFor: /(Strook)'im/g, replaceWith: "$1’im"},   //  (h)im (Conrad 'Narcissus')
     { searchFor: /"(')(Ear|It) 'im/g, replaceWith: '“’$2 ’im'},   //  (H)ear (h)im, (H)it (h)im beginning with quote (Conrad 'Narcissus')
     { searchFor: /"(')(Ere)'s/g, replaceWith: '“’$2’s'},   //  (H)ere's beginning with quote (Conrad 'Narcissus')
@@ -55,7 +55,7 @@ var replacements = [
     { searchFor: /(\?)"' /g, replaceWith: '$1”’ '},    //  close double quote preceding close single quote at sentence end
     { searchFor: /\b"/g, replaceWith: '”'},    //  close quote (eg, is preceded by a 'word boundary') needs to be set to follow punctuation as well
     { searchFor: /\b([\.|,|\?|!|;|:|-])"/g, replaceWith: '$1”'},    //  close quote after period (eg, is preceded by a 'word boundary')
-    { searchFor: /'(Twas|Tis|twas|tis|Tain|tain)/g, replaceWith: '’$1'},    //  'Twas, 'tis, 'Tain't
+    { searchFor: /'(Twas|Tis|twas|tis)/g, replaceWith: '’$1'},    //  'Twas, 'tis [no longer handles /'tain't/ except as below, when following an open quote]
     { searchFor: /t'other/g, replaceWith: "t’other"},    //  t(he) other  (Conrad 'Narcissus')
     { searchFor: / - /g, replaceWith: " — "},    //  em dash between spaces
     { searchFor: /(\w)-- /g, replaceWith: "$1— "},    //  em dash after character followed by space
@@ -75,7 +75,7 @@ var replacements = [
     { searchFor: /(\w|!|,|\?|”)--$/gm, replaceWith: "$1—"},    //  em dash after character at end of line
     { searchFor: /(\w)--!\.\.\."$/gm, replaceWith: '$1—!...”'},    //  by--!..."  (Conrad 'Narcissus')
     { searchFor: /(\w|!|,|\?|”)'--'/g, replaceWith: "$1’—‘"},    //  em dash after left single quote followed by right single quote
-    { searchFor: /(\w|!|,|\?|\.|”|:)--("|“)/g, replaceWith: '$1—“'},    //  dash and open double quote preceded by miscellaneous
+    { searchFor: /(\w|!|,|\?|\.|”|:)--("|“)('(?=[EAIOUT]))/g, replaceWith: '$1—“’'},    //  dash and open double quote  followed by elided letter ('Tain't)
     { searchFor: /(\w|!|,|\?|”)'--(\w)/g, replaceWith: "$1’—$2"},    //  em dash after left single quote followed by right single quote
     { searchFor: /(\w)--(\w)--(\w)/gm, replaceWith: "$1—$2—$3"},    //  em dash after characters (or quote) followed by letter
     { searchFor: /(\w|\.|”|\))--(\w|“|\s)/g, replaceWith: "$1—$2"},    //  em dash after characters (or quote) followed by letter
