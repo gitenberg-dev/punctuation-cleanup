@@ -181,6 +181,11 @@ describe("elided letters", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("We’re all goin’ to ’ell now.\nWell, it’s a ’omeward trip, anyhow.\nI ’old you up")
     });
+    it("should fix elided initial h in (h)as: 'as, 'As", function() {
+        var testString = "What 'as he done\?\n'As any of you 'art enough to spare";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("What ’as he done?\n’As any of you ’art enough to spare")
+    });
     it("should fix elided initial h in (h)im: catch 'im", function() {
         var testString = "'Catch 'im,' he snapped\nGive 'im to us.\n'Eat 'im!' he said curtly\nbreak 'im up\"\ncatch\n'im.";  // Conrad Heart of Darkness
         var tryThis = cleanup(testString);
@@ -192,4 +197,4 @@ describe("elided letters", function() {
         expect(tryThis).to.equal("yelled out:—“’Ave you been to your dentyst\nsuddenly—“’Tain’t far\nbeam.—“’Ow\nmuttering:—“’Twill make\nbegan to shout:—“’Ear ’im;")
     });
 });
-//ship's fo'c'sle!... Not a blooming scrap of meat in the kids.
+//"What 'as he done?"
