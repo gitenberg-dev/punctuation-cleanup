@@ -144,6 +144,11 @@ describe("less-common contractions", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("been there more’n thirty hours.\nyer wusse’n ever?\nevery chokey in the Colonies rather’n give up my rights\ntreated worser’n a dorg\nbetter’n a tot o’ rum")
     });
+    it("should fix fo'c'sle", function() {
+        var testString = "ship's fo'c'sle!... Not a blooming scrap of meat in the kids.";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("ship’s fo’c’sle!... Not a blooming scrap of meat in the kids.")
+    });
 });
 describe("elided letters", function() {
     it("should fix dropped final f — i.e., o' [o(f) ]", function() {
@@ -187,4 +192,4 @@ describe("elided letters", function() {
         expect(tryThis).to.equal("yelled out:—“’Ave you been to your dentyst\nsuddenly—“’Tain’t far\nbeam.—“’Ow\nmuttering:—“’Twill make\nbegan to shout:—“’Ear ’im;")
     });
 });
-//yelled out:--"'Ave you been to your dentyst
+//ship's fo'c'sle!... Not a blooming scrap of meat in the kids.
