@@ -61,7 +61,7 @@ describe("possessives", function() {
         expect(tryThis).to.equal("and some WWII vintage blockhouses and officers’ quarters.")
     });
 });
-describe("common uses", function() {
+describe("common uses of apostrophe", function() {
     it("should fix Irish names: O'Reilly", function() {
         var testString = "shipping barn, on the Monsignor O'Brien Highway, that is owned";  // Hacker Crackdown
         var tryThis = cleanup(testString);
@@ -202,4 +202,12 @@ describe("elided letters", function() {
         expect(tryThis).to.equal("yelled out:—“’Ave you been to your dentyst\nsuddenly—“’Tain’t far\nbeam.—“’Ow\nmuttering:—“’Twill make\nbegan to shout:—“’Ear ’im;")
     });
 });
+describe("em dashes", function() {
+    it("should fix single hyphen used as a dash", function() {
+        var testString = "INDEMNITY - You agree to indemnify and hold the Foundation,\nLIMITED RIGHT OF REPLACEMENT OR REFUND - If you discover a";  // Rime
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("INDEMNITY — You agree to indemnify and hold the Foundation,\nLIMITED RIGHT OF REPLACEMENT OR REFUND — If you discover a")
+    });
+});
+
 //"What 'as he done?"
