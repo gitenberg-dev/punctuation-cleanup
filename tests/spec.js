@@ -204,10 +204,22 @@ describe("elided letters", function() {
 });
 describe("em dashes", function() {
     it("should fix single hyphen used as a dash", function() {
-        var testString = "INDEMNITY - You agree to indemnify and hold the Foundation,\nLIMITED RIGHT OF REPLACEMENT OR REFUND - If you discover a";  // Rime
+        var testString = "INDEMNITY - You agree to indemnify and hold the Foundation,\nLIMITED RIGHT OF REPLACEMENT OR REFUND - If you discover a";  // many PG texts incl Rime
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("INDEMNITY — You agree to indemnify and hold the Foundation,\nLIMITED RIGHT OF REPLACEMENT OR REFUND — If you discover a")
     });
+/*  passes 2-em but fails end quote — reinstate test after double quotes?
+    it("should fix 4 or 6 hyphens used as a 2-em dash", function() {
+        var testString = "you hadn't been sick I would------\"";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("you hadn’t been sick I would——”")
+    });
+*/
+    it("should fix 4 or 6 hyphens used as a 2-em dash", function() {
+        var testString = "you hadn't been sick I would------\nyourself------Relieving tackle------Don't you know better!------Ough!------Able";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("you hadn’t been sick I would——\nyourself——Relieving tackle——Don’t you know better!——Ough!——Able")
+    });
 });
 
-//"What 'as he done?"
+//
