@@ -149,6 +149,11 @@ describe("less-common contractions", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("ship’s fo’c’sle!... Not a blooming scrap of meat in the kids.")
     });
+    it("should fix p'r'aps", function() {
+        var testString = "to-morrow p'r'aps. Ten days!";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("to-morrow p’r’aps. Ten days!")
+    });
 });
 describe("elided letters", function() {
     it("should fix dropped final f — i.e., o' [o(f) ]", function() {
