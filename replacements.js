@@ -111,7 +111,7 @@ var replacements = [
     { searchFor: /(\s|“)'(Ee|ee|Ave)/g, replaceWith: "$1’$2"},   //  space open quote (H)e (Conrad 'Narcissus')
     { searchFor: /(\s)"'(Ee|ee|Ave)/g, replaceWith: "$1“’$2"},   //  space open quote (H)e (Conrad 'Narcissus')
     { searchFor: /^'ee/gm, replaceWith: "’ee"},   //  (h)e at line beginning (Conrad 'Narcissus')
-    { searchFor: /voy'ge/g, replaceWith: "yoy’ge"},   //  voy(a)ge (Conrad 'Narcissus')
+    { searchFor: /voy'ge/g, replaceWith: "voy’ge"},   //  voy(a)ge (Conrad 'Narcissus')
     { searchFor: /(:|,) '_(\w)/g, replaceWith: "$1 ‘_$2"},   //  italic inside single quote, markdown (Youth)
     { searchFor: / '<i>/g, replaceWith: " ‘<i>"}   //  italic inside single quote, html (Heart of Darkness)
 ];
