@@ -154,7 +154,12 @@ describe("less-common contractions", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("to-morrow p’r’aps. Ten days!")
     });
-});
+    it("should fix voy'ge", function() {
+        var testString = "Some voy'ge she will drown all hands!";  // Conrad 'Narcissus'
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("Some voy’ge she will drown all hands!")
+    });
+});  //Some voy'ge she will drown all hands!
 describe("elided letters", function() {
     it("should fix dropped final f — i.e., o' [o(f) ]", function() {
         var testString = "better'n a tot o' rum\nYou know I can't sleep o' nights.";  // Conrad 'Narcissus'
