@@ -57,7 +57,7 @@ var replacements = [
     { searchFor: /\b([\.|,|\?|!|;|:|-])"/g, replaceWith: '$1”'},    //  close quote after period (eg, is preceded by a 'word boundary')
     { searchFor: /'(Twas|Tis|twas|tis)/g, replaceWith: '’$1'},    //  'Twas, 'tis [no longer handles /'tain't/ except as below, when following an open quote]
     { searchFor: /t'other/g, replaceWith: "t’other"},    //  t(he) other  (Conrad 'Narcissus')
-    { searchFor: / - /g, replaceWith: " — "},    //  em dash between spaces
+    { searchFor: / -(-)? /g, replaceWith: " — "},    //  em dash between spaces
     { searchFor: /(\w)-- /g, replaceWith: "$1— "},    //  em dash after character followed by space
     { searchFor: /(\w)--'(\w)/g, replaceWith: "$1—‘$2"},    //  em dash after character followed by right single quote and space
     { searchFor: /(\w)'--(\w)/g, replaceWith: "$1’—$2"},    //  right single quote after character followed by em dash
