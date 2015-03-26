@@ -225,6 +225,11 @@ describe("em dashes", function() {
         var tryThis = cleanup(testString);
         expect(tryThis).to.equal("you hadn’t been sick I would——\nyourself——Relieving tackle——Don’t you know better!——Ough!——Able")
     });
+    it("should fix two hyphens as dash followed by space", function() {
+        var testString = "in the bank, that is-- then nobody";  // Hacker Crackdown
+        var tryThis = cleanup(testString);
+        expect(tryThis).to.equal("in the bank, that is— then nobody")
+    });
 });
 
-//
+//in the bank, that is-- then nobody
