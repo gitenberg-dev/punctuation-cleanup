@@ -113,7 +113,8 @@ var replacements = [
     { searchFor: /^'ee/gm, replaceWith: "’ee"},   //  (h)e at line beginning (Conrad 'Narcissus')
     { searchFor: /voy'ge/g, replaceWith: "voy’ge"},   //  voy(a)ge (Conrad 'Narcissus')
     { searchFor: /(:|,) '_(\w)/g, replaceWith: "$1 ‘_$2"},   //  italic inside single quote, markdown (Youth)
-    { searchFor: / '<i>/g, replaceWith: " ‘<i>"}   //  italic inside single quote, html (Heart of Darkness)
+    { searchFor: / '<i>/g, replaceWith: " ‘<i>"},   //  italic inside single quote, html (Heart of Darkness)
+    { searchFor: /(\s)'(\d+)/g, replaceWith: "$1’$2"}   //  Abbreviated year: e.g. '6 in the author's note to (Conrad 'Nostromo')
 ];
 //
 module.exports = replacements;
